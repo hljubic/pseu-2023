@@ -2,63 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rubrika;
 use Illuminate\Http\Request;
 
 class RubrikaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Rubrika::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $grad = new Rubrika();
+        $grad->naziv = $request->naziv;
+        $grad->opis = $request->opis;
+        $grad->save();
+
+        return 'Dodano';
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function edit(Request $request) {
+        $grad = Rubrika::find($request->id);
+        $grad->naziv = $request->naziv;
+        $grad->opis = $request->opis;
+        $grad->save();
+
+        return 'Uređeno';
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function destroy($id) {
+        Rubrika::find($id)->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return 'Izbrisano';
     }
 }
