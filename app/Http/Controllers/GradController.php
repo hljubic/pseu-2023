@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grad;
 use Illuminate\Http\Request;
 
 class GradController extends Controller
@@ -11,15 +12,19 @@ class GradController extends Controller
      */
     public function index()
     {
-        //
+        return Grad::all();
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create(Request $request) {
+        $grad = new Grad();
+        $grad->naziv = $request->naziv;
+        $grad->postanski_broj = $request->pb;
+        $grad->save();
+
+        return 'Dodano';
     }
 
     /**
@@ -41,9 +46,13 @@ class GradController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(Request $request) {
+        $grad = Grad::find($request->id);
+        $grad->naziv = $request->naziv;
+        $grad->postanski_broj = $request->pb;
+        $grad->save();
+
+        return 'Uređeno';
     }
 
     /**
@@ -57,8 +66,9 @@ class GradController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy($id) {
+        Grad::find($id)->delete();
+
+        return 'Izbrisano';
     }
 }

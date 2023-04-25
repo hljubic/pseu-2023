@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Grad;
+use App\Http\Controllers\GradController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,35 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/gradovi/dodaj/{naziv}/{pb}', function ($naziv, $pb) {
-    $grad = new Grad();
-    $grad->naziv = $naziv;
-    $grad->postanski_broj = $pb;
-    $grad->save();
-
-    return 'Dodano';
-});
-
-Route::get('/gradovi/uredi/{id}/{naziv}/{pb}', function ($id, $naziv, $pb) {
-    $grad = Grad::find($id);
-    $grad->naziv = $naziv;
-    $grad->postanski_broj = $pb;
-    $grad->save();
-
-    return 'Uređeno';
-});
-
-Route::get('/gradovi/dohvati', function () {
-    return Grad::all();
-});
-
-Route::get('/gradovi/izbrisi/{id}', function ($id) {
-    Grad::find($id)->delete();
-
-    return 'Izbrisano';
-});
-
-
+Route::post('/gradovi/dodaj', [GradController::class, 'create']);
+Route::post('/gradovi/uredi/{id}', [GradController::class, 'edit']);
+Route::get('/gradovi/dohvati', [GradController::class, 'index']);
+Route::get('/gradovi/izbrisi/{id}', [GradController::class, 'destroy']);
 
 
 Route::get('/prva_ruta', function() {
