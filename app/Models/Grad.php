@@ -12,4 +12,9 @@ class Grad extends Model
     protected $table = 'gradovi';
 
     protected $fillable = ['naziv', 'postanski_broj'];
+
+    public function ucenici()
+    {
+        return $this->hasMany(Ucenik::class, 'grad_id');
+    }
 }

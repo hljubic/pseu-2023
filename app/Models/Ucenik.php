@@ -15,4 +15,9 @@ class Ucenik extends Model
         'ime', 'datum_rodjenja', 'jmbg',
         'spol', 'grad_id'
     ];
+
+    public function grad()
+    {
+        return $this->belongsTo(Grad::class, 'grad_id');
+    }
 }

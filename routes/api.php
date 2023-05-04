@@ -19,21 +19,21 @@ use Illuminate\Support\Facades\Route;
 
 
 // Gradovi
-Route::post('/gradovi/dodaj', [GradController::class, 'create']);
+Route::post('/gradovi/dodaj', [GradController::class, 'store']);
 Route::post('/gradovi/uredi/{id}', [GradController::class, 'edit']);
 Route::get('/gradovi/dohvati', [GradController::class, 'index']);
 Route::get('/gradovi/izbrisi/{id}', [GradController::class, 'destroy']);
 
 
 // Učenici
-Route::post('/ucenici/dodaj', [UcenikController::class, 'create']);
+Route::post('/ucenici/dodaj', [UcenikController::class, 'store']);
 Route::post('/ucenici/uredi/{id}', [UcenikController::class, 'edit']);
 Route::get('/ucenici/dohvati', [UcenikController::class, 'index']);
 Route::get('/ucenici/izbrisi/{id}', [UcenikController::class, 'destroy']);
 
 
 // Rubrike
-Route::post('/rubrike/dodaj', [RubrikaController::class, 'create']);
+Route::post('/rubrike/dodaj', [RubrikaController::class, 'store']);
 Route::post('/rubrike/uredi/{id}', [RubrikaController::class, 'edit']);
 Route::get('/rubrike/dohvati', [RubrikaController::class, 'index']);
 Route::get('/rubrike/izbrisi/{id}', [RubrikaController::class, 'destroy']);
